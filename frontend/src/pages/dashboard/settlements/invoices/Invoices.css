@@ -1,0 +1,8 @@
+.invoices {
+	width: 100%;
+}
+
+.status-cell {
+	color: var(--appGreen);
+}
+
