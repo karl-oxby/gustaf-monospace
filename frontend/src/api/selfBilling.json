@@ -1,0 +1,11 @@
+[
+	{
+		"settlementId": "b8f4031e-1e03-4aec-bc11-c6b5359a3871",
+		"issueDate": "2025-01-02",
+		"dueDate": "2025-02-02",
+		"status": "Paid",
+		"selfbillingNo": "SB0000001",
+		"amount": 93.25
+	}
+]
+
