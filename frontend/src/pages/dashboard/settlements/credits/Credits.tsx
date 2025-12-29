@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { DataTable } from '../../../../components/tables/DataTable'
 import { getCredits } from '../../../../services/credits.service'
+import type { Credit } from '../../../../types'
 import './Credits.css'
 
 export function Credits() {
-	const [credits, setCredits] = useState<any[]>([])
+	const [credits, setCredits] = useState<Credit[]>([])
 
 	useEffect(() => {
 		getCredits().then(setCredits)

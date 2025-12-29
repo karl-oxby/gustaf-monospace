@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { DataTable } from '../../../../components/tables/DataTable'
 import { getSelfBilling } from '../../../../services/self-billing.service'
+import type { SelfBilling } from '../../../../types'
 import './Selfbilling.css'
 
 export function Selfbilling() {
-	const [selfBilling, setSelfBilling] = useState<any[]>([])
+	const [selfBilling, setSelfBilling] = useState<SelfBilling[]>([])
 
 	useEffect(() => {
 		getSelfBilling().then(setSelfBilling)

@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Logo from '../../../../assets/svg/gustaf.svg?react'
 import { getInvoicesById } from '../../../../services/invoices.service'
+import type { Invoice } from '../../../../types'
 import './InvoicesDetails.css'
 
 export function InvoicesDetails() {
 	const { settlementId } = useParams()
-	const [invoice, setInvoice] = useState<any | null>(null)
+	const [invoice, setInvoice] = useState<Invoice | null>(null)
 
 	useEffect(() => {
 		if (!settlementId) return

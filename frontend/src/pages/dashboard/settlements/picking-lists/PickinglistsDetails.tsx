@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Logo from '../../../../assets/svg/gustaf.svg?react'
 import { getPickingListsById } from '../../../../services/picking-lists.service'
+import type { PickingList } from '../../../../types'
 import './PickinglistsDetails.css'
 
 export function PickinglistsDetails() {
 	const { settlementId } = useParams()
-	const [pickingList, setPickingList] = useState<any | null>(null)
+	const [pickingList, setPickingList] = useState<PickingList | null>(null)
 
 	useEffect(() => {
 		if (!settlementId) return

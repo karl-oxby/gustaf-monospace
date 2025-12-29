@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Logo from '../../../../assets/svg/gustaf.svg?react'
 import { getCreditsById } from '../../../../services/credits.service'
+import type { Credit } from '../../../../types'
 import './CreditsDetails.css'
 
 export function CreditsDetails() {
 	const { settlementId } = useParams()
-	const [credit, setCredit] = useState<any | null>(null)
+	const [credit, setCredit] = useState<Credit | null>(null)
 
 	useEffect(() => {
     		if (!settlementId) return

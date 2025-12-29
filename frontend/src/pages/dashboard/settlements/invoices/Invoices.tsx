@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { DataTable } from '../../../../components/tables/DataTable'
 import { getInvoices } from '../../../../services/invoices.service'
+import type { Invoice } from '../../../../types'
 import './Invoices.css'
 
 export function Invoices() {
-	const [invoices, setInvoices] = useState<any[]>([])
+	const [invoices, setInvoices] = useState<Invoice[]>([])
 	
 	useEffect(() => {
 		getInvoices().then(setInvoices)

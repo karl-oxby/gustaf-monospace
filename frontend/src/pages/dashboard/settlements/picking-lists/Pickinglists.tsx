@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { DataTable } from '../../../../components/tables/DataTable'
 import { getPickingLists } from '../../../../services/picking-lists.service'
+import type { PickingList } from '../../../../types'
 import './Pickinglists.css'
 
 export function Pickinglists() {
-	const [pickingLists, setPickingLists] = useState<any[]>([])
+	const [pickingLists, setPickingLists] = useState<PickingList[]>([])
 
 	useEffect(() => {
 		getPickingLists().then(setPickingLists)

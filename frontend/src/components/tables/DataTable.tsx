@@ -7,15 +7,16 @@ export interface Column {
 	className?: string
 }
 
-interface DataTableProps {
-	data: any[]
+interface DataTableProps<T> {
+	data: T[]
 	columns: Column[]
 	defaultSortKey: string
 	searchKey: string
 	pagePrefix: string
 }
 
-export function DataTable({ data, columns, defaultSortKey, searchKey, pagePrefix }: DataTableProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function DataTable<T extends Record<string, any>>({ data, columns, defaultSortKey, searchKey, pagePrefix }: DataTableProps<T>) {
 	const [search, setSearch] = useState('')
 	const [showAll, setShowAll] = useState(false)
 

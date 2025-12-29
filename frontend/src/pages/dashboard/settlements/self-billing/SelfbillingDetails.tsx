@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Logo from '../../../../assets/svg/gustaf.svg?react'
 import { getSelfBillingById } from '../../../../services/self-billing.service'
+import type { SelfBilling } from '../../../../types'
 import './SelfbillingDetails.css'
 
 export function SelfbillingDetails() {
 	const { settlementId } = useParams()
-	const [selfBilling, setSelfBilling] = useState<any | null>(null)
+	const [selfBilling, setSelfBilling] = useState<SelfBilling | null>(null)
 
 	useEffect(() => {
 		if (!settlementId) return
