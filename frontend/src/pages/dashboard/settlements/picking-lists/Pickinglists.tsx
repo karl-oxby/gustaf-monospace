@@ -8,7 +8,7 @@ export function Pickinglists() {
 	const [pickingLists, setPickingLists] = useState<PickingList[]>([])
 
 	useEffect(() => {
-		getPickingLists().then(setPickingLists)
+		getPickingLists(0, 1000).then(setPickingLists)
 	}, [])
 
 	const columns = [
