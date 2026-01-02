@@ -6,7 +6,7 @@ import { normalizeData, formatStatus, calculateAmount, calculateDueDate, formatD
 function mapToSelfBilling(settlement: Settlement): SelfBilling | null {
     const data = normalizeData(settlement.data);
     const sbItem = settlement.items.find(i => i.payment_type === PaymentType.SB);
-    const hasSelfBillingNo = !!data.selfbillingNo || !!sbItem?.payment_id;
+    const hasSelfBillingNo = !!(data.selfbillingNo as string) || !!sbItem?.payment_id;
 
     if (!sbItem && !hasSelfBillingNo) {
         return null;
@@ -17,7 +17,7 @@ function mapToSelfBilling(settlement: Settlement): SelfBilling | null {
         issueDate: formatDate(settlement.issue_date),
         dueDate: formatDate(calculateDueDate(settlement.issue_date)),
         status: formatStatus(settlement.status),
-        selfbillingNo: data.selfbillingNo || sbItem?.payment_id || '',
+        selfbillingNo: (data.selfbillingNo as string) || sbItem?.payment_id || '',
         amount: calculateAmount(sbItem ? sbItem.data : settlement.data),
         ...data
     };

@@ -6,7 +6,7 @@ import { normalizeData, formatStatus, calculateAmount, calculateDueDate, formatD
 function mapToCredit(settlement: Settlement): Credit | null {
     const data = normalizeData(settlement.data);
     const creditItem = settlement.items.find(i => i.payment_type === PaymentType.CR);
-    const hasCreditNo = !!data.creditNo || !!creditItem?.payment_id;
+    const hasCreditNo = !!(data.creditNo as string) || !!creditItem?.payment_id;
 
     if (!creditItem && !hasCreditNo) {
         return null;
@@ -17,7 +17,7 @@ function mapToCredit(settlement: Settlement): Credit | null {
         issueDate: formatDate(settlement.issue_date),
         dueDate: formatDate(calculateDueDate(settlement.issue_date)),
         status: formatStatus(settlement.status),
-        creditNo: data.creditNo || creditItem?.payment_id || '',
+        creditNo: (data.creditNo as string) || creditItem?.payment_id || '',
         amount: calculateAmount(creditItem ? creditItem.data : settlement.data),
         ...data
     };

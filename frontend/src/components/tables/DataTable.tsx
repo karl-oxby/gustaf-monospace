@@ -15,7 +15,7 @@ interface DataTableProps<T> {
 	pagePrefix: string
 }
 
-export function DataTable<T extends Record<string, string | number | boolean | undefined | null>>({ data, columns, defaultSortKey, searchKey, pagePrefix }: DataTableProps<T>) {
+export function DataTable<T extends Record<string, any>>({ data, columns, defaultSortKey, searchKey, pagePrefix }: DataTableProps<T>) {
 	const [search, setSearch] = useState('')
 	const [showAll, setShowAll] = useState(false)
 

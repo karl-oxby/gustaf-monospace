@@ -6,7 +6,7 @@ import { normalizeData, formatStatus, calculateAmount, calculateDueDate, formatD
 function mapToInvoice(settlement: Settlement): Invoice | null {
     const data = normalizeData(settlement.data);
     const invoiceItem = settlement.items.find(i => i.payment_type === PaymentType.PI);
-    const hasInvoiceNo = !!data.invoiceNo || !!invoiceItem?.payment_id;
+    const hasInvoiceNo = !!(data.invoiceNo as string) || !!invoiceItem?.payment_id;
 
     if (!invoiceItem && !hasInvoiceNo) {
         return null;
@@ -17,9 +17,9 @@ function mapToInvoice(settlement: Settlement): Invoice | null {
         issueDate: formatDate(settlement.issue_date),
         dueDate: formatDate(calculateDueDate(settlement.issue_date)),
         status: formatStatus(settlement.status),
-        invoiceNo: data.invoiceNo || invoiceItem?.payment_id || '',
+        invoiceNo: (data.invoiceNo as string) || invoiceItem?.payment_id || '',
         amount: calculateAmount(invoiceItem ? invoiceItem.data : settlement.data),
-        data_url: invoiceItem?.data_url || `https://api.merchant.gustaf.se/storage/${data.invoiceNo || invoiceItem?.payment_id}.pdf`,
+        data_url: invoiceItem?.data_url || `https://api.merchant.gustaf.se/storage/${(data.invoiceNo as string) || invoiceItem?.payment_id}.pdf`,
         ...data
     };
 }
