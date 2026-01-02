@@ -1,28 +1,37 @@
 import type { SettlementStatus } from '../types';
 
-export function normalizeData(data: any): Record<string, any> {
-    if (Array.isArray(data)) {
-        return data.length > 0 ? data[0] : {};
-    }
-    return data || {};
+interface FinancialItem {
+    amount?: number | string;
+    total_price?: number | string;
+    totalPrice?: number | string;
+    [key: string]: unknown;
 }
 
-export function calculateAmount(data: any): number {
+export function normalizeData(data: unknown): Record<string, unknown> {
+    if (Array.isArray(data)) {
+        return data.length > 0 ? (data[0] as Record<string, unknown>) : {};
+    }
+    return (data as Record<string, unknown>) || {};
+}
+
+export function calculateAmount(data: unknown): number {
     if (!data) return 0;
 
     // If it's a dictionary/object
     if (typeof data === 'object' && !Array.isArray(data)) {
-        const amount = data.amount ?? data.total_price ?? data.totalPrice;
+        const item = data as FinancialItem;
+        const amount = item.amount ?? item.total_price ?? item.totalPrice;
         if (amount !== undefined) {
-            return typeof amount === 'number' ? amount : parseFloat(amount) || 0;
+            return typeof amount === 'number' ? amount : parseFloat(String(amount)) || 0;
         }
     }
     
     // If it's an array of items
     if (Array.isArray(data)) {
-        return data.reduce((sum: number, item: any) => {
+        return data.reduce((sum: number, rawItem: unknown) => {
+            const item = rawItem as FinancialItem;
             const price = item.total_price || item.totalPrice || item.amount || 0;
-            return sum + (typeof price === 'number' ? price : parseFloat(price) || 0);
+            return sum + (typeof price === 'number' ? price : parseFloat(String(price)) || 0);
         }, 0);
     }
     

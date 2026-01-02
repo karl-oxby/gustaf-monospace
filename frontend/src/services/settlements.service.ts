@@ -13,6 +13,6 @@ export async function createSettlement(data: Partial<Settlement>): Promise<Settl
     return apiClient.post<Settlement>('/settlements/', data);
 }
 
-export async function updateSettlement(id: string, updates: { status?: SettlementStatus; data?: any }): Promise<Settlement> {
+export async function updateSettlement(id: string, updates: { status?: SettlementStatus; data?: unknown }): Promise<Settlement> {
     return apiClient.patch<Settlement>(`/settlements/${id}`, updates);
 }

@@ -26,7 +26,7 @@ export interface SettlementItem {
     data_url?: string;
     data_url2?: string;
     data_url3?: string;
-    data: any;
+    data: unknown;
     created_at?: string;
     updated_at?: string;
 }
@@ -36,7 +36,7 @@ export interface Settlement {
     issue_date: string;
     due_date: string;
     status: SettlementStatus;
-    data: any;
+    data: unknown;
     items: SettlementItem[];
     created_at?: string;
     updated_at?: string;
@@ -50,7 +50,7 @@ export interface Invoice {
     invoiceNo: string;
     amount: number;
     data_url?: string;
-    [key: string]: string | number | undefined | any;
+    [key: string]: string | number | undefined | unknown;
 }
 
 export interface Credit {
@@ -60,7 +60,7 @@ export interface Credit {
     status: string;
     creditNo: string;
     amount: number;
-    [key: string]: string | number | undefined | any;
+    [key: string]: string | number | undefined | unknown;
 }
 
 export interface PickingList {
@@ -70,7 +70,7 @@ export interface PickingList {
     pickinglistNo: string;
     data_url2?: string;
     data_url3?: string;
-    [key: string]: string | number | undefined | any;
+    [key: string]: string | number | undefined | unknown;
 }
 
 export interface SelfBilling {
@@ -80,5 +80,5 @@ export interface SelfBilling {
     status: string;
     selfbillingNo: string;
     amount: number;
-    [key: string]: string | number | undefined | any;
+    [key: string]: string | number | undefined | unknown;
 }
