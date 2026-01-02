@@ -69,12 +69,12 @@ export function PickinglistsDetails() {
 				</div>
 
 				<div className='details-footer'>
-					<button>
+					<a href={pickingList.data_url3} target="_blank" rel="noopener noreferrer">
 						Download csv
-					</button>
-					<button className='main'>
+					</a>
+					<a href={pickingList.data_url2} target="_blank" rel="noopener noreferrer" className='main'>
 						Download pdf
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>

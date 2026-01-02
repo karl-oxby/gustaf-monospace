@@ -75,9 +75,9 @@ export function InvoicesDetails() {
 					</div>
 				</div>
 				<div className='details-footer'>
-					<button>
+					<a href={invoice.data_url} target="_blank" rel="noopener noreferrer">
 						Download invoice
-					</button>
+					</a>
 					<button className='main'>
 						Mark as paid
 					</button>

@@ -15,8 +15,7 @@ interface DataTableProps<T> {
 	pagePrefix: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function DataTable<T extends Record<string, any>>({ data, columns, defaultSortKey, searchKey, pagePrefix }: DataTableProps<T>) {
+export function DataTable<T extends Record<string, string | number | boolean | undefined | null>>({ data, columns, defaultSortKey, searchKey, pagePrefix }: DataTableProps<T>) {
 	const [search, setSearch] = useState('')
 	const [showAll, setShowAll] = useState(false)
 
@@ -44,8 +43,8 @@ export function DataTable<T extends Record<string, any>>({ data, columns, defaul
 
 			if (typeof aVal === 'number' && typeof bVal === 'number') {
 				result = aVal - bVal
-			} else if (!isNaN(Date.parse(aVal)) && !isNaN(Date.parse(bVal))) {
-				result = Date.parse(aVal) - Date.parse(bVal)
+			} else if (!isNaN(Date.parse(String(aVal))) && !isNaN(Date.parse(String(bVal)))) {
+				result = Date.parse(String(aVal)) - Date.parse(String(bVal))
 			} else {
 				result = String(aVal).localeCompare(String(bVal))
 			}

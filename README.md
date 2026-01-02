@@ -76,8 +76,60 @@ gh pr create --base develop --title "Feature description" --body "Details"
 gh pr create --base main --head develop --title "Release v1.0.0"
 ```
 
-#### **Method C: Direct URL**
-After running `git push`, look at the terminal output. GitHub provides a direct link to create a PR:
-`remote: Create a pull request for 'feature/...' by visiting:`
-`remote: https://github.com/user/repo/pull/new/feature/...`
-Simply copy-paste or click the link in your terminal.
+### 4. How to Merge (Safe vs. Fast)
+
+
+
+You have two options to merge your changes and trigger the deployment:
+
+
+
+#### **Option 1: The "Safe" Way (Recommended for Teams)**
+
+**Use Pull Requests (PRs).**
+
+*   **Process:** Push branch → Create PR on GitHub → Review → Click **"Merge"** button.
+
+*   **Why:** Provides a history of changes, allows for peer review, and prevents accidental pushes to `main`.
+
+*   **Bonus:** Check "Delete branch after merging" on GitHub to keep the repo clean.
+
+
+
+#### **Option 2: The "Fast" Way (Solo Developer)**
+
+**Merge locally and push directly.**
+
+Use this if you want to skip the GitHub UI and deploy immediately from your terminal.
+
+
+
+**To Staging:**
+
+```bash
+
+git checkout develop
+
+git merge feature/your-feature-name
+
+git push origin develop
+
+# Optional: Delete local feature branch
+
+git branch -d feature/your-feature-name
+
+```
+
+
+
+**To Production:**
+
+```bash
+
+git checkout main
+
+git merge develop
+
+git push origin main
+
+```
