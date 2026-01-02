@@ -119,7 +119,7 @@ jobs:
 
       - name: Commit and Push
         run: |
-          cd infrarun t
+          cd infra
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           
